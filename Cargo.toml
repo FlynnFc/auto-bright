@@ -12,3 +12,11 @@ ddc-winapi = "0.2.2"
 futures = "0.3.31"
 tokio = { version = "1.48.0", features = ["full"] }
 v = "0.1.0"
+
+[profile.release]
+opt-level = 3        # highest general optimisation
+lto = "fat"          # maximize cross-module optimisation (best, but slow compile)
+codegen-units = 1    # force LLVM to optimise whole program
+panic = "abort"      # remove unwinding machinery
+strip = true         # remove debug info
+incremental = false
