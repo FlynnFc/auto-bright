@@ -42,7 +42,7 @@ fn calculate_target(hour: u32, minute: u32) -> u32 {
 
     if minutes >= morning_start && minutes < morning_end {
         let progress = (minutes - morning_start) as f32 / (morning_end - morning_start) as f32;
-        return (10.0 + progress * 90.0).round() as u32;
+        return (progress * 90.0).round() as u32;
     }
 
     // Normal daytime 07:00 → 19:00 → 100%
@@ -52,7 +52,7 @@ fn calculate_target(hour: u32, minute: u32) -> u32 {
 
     // Night 22:00 → 00:00 → hold 10%
     if minutes >= 22 * 60 {
-        return 10;
+        return 0;
     }
 
     100
